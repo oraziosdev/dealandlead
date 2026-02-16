@@ -79,6 +79,11 @@ st.sidebar.image(
 )
 st.sidebar.title("Filtri")
 
+# Pulsante per aggiornare i dati
+if st.sidebar.button("🔄 Aggiorna dati", key="refresh_button"):
+        st.cache_data.clear()
+        st.rerun()
+
 # Corso filter
 all_corsi = sorted(
     set(deals["CORSI"].dropna().unique()) | set(leads["CORSI"].dropna().unique())
