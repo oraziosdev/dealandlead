@@ -4,6 +4,7 @@ import plotly.express as px
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import os
+import glob
 
 # ── Config ──────────────────────────────────────────────────────────────────
 st.set_page_config(
@@ -14,8 +15,8 @@ st.set_page_config(
 
 # ── Helpers ─────────────────────────────────────────────────────────────────
 DATA_DIR = os.path.dirname(os.path.abspath(__file__))
-DEAL_FILE = os.path.join(DATA_DIR, "DealDatatable.xlsx")
-LEAD_FILE = os.path.join(DATA_DIR, "LeadArchiveDatatable.xlsx")
+DEAL_FILE = max(glob.glob(os.path.join(DATA_DIR, "DealDatatable*.xlsx")), key=os.path.getmtime)
+LEAD_FILE = max(glob.glob(os.path.join(DATA_DIR, "LeadArchiveDatatable*.xlsx")), key=os.path.getmtime)
 
 COLORS = {
     "concluso": "#2ecc71",
